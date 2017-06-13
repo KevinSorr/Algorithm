@@ -9,25 +9,24 @@ import java.util.Map;
  *   其中，A,B,C,D中均含有相同的元素个数N,且0<=N<=500
  */
 public class SumII4 {
-
-    public int fourSumCount(int[] A ,int[] B,int[] C,int[] D){
-        Map<Integer,Integer> records = new HashMap<>();
-        for(int i = 0;i  < A.length;i++){
-            for(int j = 0;j < B.length;j++){
-                int value = A[i] + A[j];
-                if(records.get(value) != null ){
-                    records.put(value,records.get(value)+1);
-                }else{
+    public int fourSumCount(int[] A, int[] B, int[] C, int[] D) {
+        int sum = 0;
+        Map<Integer,Integer> records = new HashMap<Integer,Integer>();
+        for(int i = 0; i < A.length;i++){
+            for(int j = 0; j < B.length;j++){
+                int value = A[i]+B[j];
+                if(records.get(value) == null){
                     records.put(value,1);
+                }else{
+                    records.put(value,records.get(value)+1);
                 }
             }
         }
-        int sum = 0;
-        for(int i = 0;i <C.length;i++){
-            for(int j = 0;j < D.length;j++){
-                int value = C[i]+ D[j];
-                if(records.get(0- value) != null){
-                    sum+= records.get(0-value);
+        for(int i = 0; i < C.length;i++){
+            for(int j = 0; j < D.length;j++){
+                int value = C[i] + D[j];
+                if(records.get(0-value) != null){
+                    sum += records.get(0-value);
                 }
             }
         }

@@ -1,5 +1,6 @@
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -32,6 +33,21 @@ public class ContainsDuplicateII {
             }
             if(records.size() == k + 1){
                 records.remove(array[i - k]);
+            }
+        }
+        return false;
+    }
+
+    public boolean containsNearbyDuplicate(int[] nums, int k) {
+        //HashMap要比HashSet快
+        Map<Integer,Integer> records = new HashMap<Integer,Integer>();
+        for(int i =0; i < nums.length;i ++){
+            if(records.get(nums[i]) != null){
+                return true;
+            }
+            records.put(nums[i],1);
+            if(records.keySet().size() == k + 1){
+                records.remove(nums[i-k]);
             }
         }
         return false;
