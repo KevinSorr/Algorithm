@@ -2,6 +2,8 @@ import java.util.Stack;
 
 /**
  * Created by ydm on 2017/6/14.
+ *  LeetCode 144 Binary Tree Preorder Traversal
+ * 前序遍历二叉树
  */
 class TreeNodeVisited {
     boolean isVistited = false;
