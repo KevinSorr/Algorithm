@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 /**
@@ -65,36 +67,35 @@ public class BinaryTreePreorderTraversal {
     }
 
     //后遍历 145
-    public void BinaryTreeNextorderTraversal(TreeNode node) {
-        if (node == null) {
-            return;
-        }
-        Stack<TreeNodeVisited> stack = new Stack<>();
-        TreeNodeVisited nodeTop = new TreeNodeVisited(false, node);
-        stack.add(nodeTop);
-        while (!stack.empty()) {
-            TreeNodeVisited top = stack.peek();
+    public List<Integer> BinaryTreeNextorderTraversal(TreeNode node) {
 
-            boolean isPop = false;
-            if (top.node.right != null && !top.isVistited) {
-                stack.push(new TreeNodeVisited(false, top.node.right));
-            } else {
-                System.out.println(top.node.value);
-                stack.pop();
-                isPop = true;
+            List<Integer> result = new ArrayList<>();
+            if (node == null) {
+                return result;
             }
-            if (top.node.left != null && !top.isVistited) {
-                stack.push(new TreeNodeVisited(false, top.node.left));
-            } else {
-                if (!isPop) {
-                    System.out.println(top.node.value);
-                    stack.pop();
+            Stack<TreeNodeVisited> stack = new Stack<>();
+            TreeNodeVisited nodeTop = new TreeNodeVisited(false, node);
+            stack.add(nodeTop);
+            while (!stack.empty()) {
+                TreeNodeVisited top = stack.peek();
+
+                if (top.node.right != null && !top.isVistited) {
+                    stack.push(new TreeNodeVisited(false, top.node.right));
                 }
+                if (top.node.left != null && !top.isVistited) {
+                    stack.push(new TreeNodeVisited(false, top.node.left));
+                }
+                if(top.isVistited){
+                    TreeNodeVisited out = stack.pop();
+                    result.add(out.node.value);
+                }
+                top.isVistited = true;
+
+
             }
-            top.isVistited = true;
+            return result;
 
 
-        }
     }
 
     public static void main(String[] args) {
