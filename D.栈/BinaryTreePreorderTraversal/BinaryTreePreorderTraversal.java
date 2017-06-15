@@ -146,6 +146,54 @@ public class BinaryTreePreorderTraversal {
 
     }
 
+    //前序遍历 递归实现
+    public void preTreeNode(TreeNode root){
+        if(root == null){
+            return;
+        }
+        System.out.println(root.value);
+        if(root.left != null){
+            preTreeNode(root.left);
+        }
+        if(root.right != null){
+            preTreeNode(root.right);
+        }
+
+
+    }
+    //中序遍历 递归实现
+    public void inTreeNode(TreeNode root){
+        if(root == null){
+            return;
+        }
+
+        if(root.left != null){
+            inTreeNode(root.left);
+        }
+        System.out.println(root.value);
+        if(root.right != null){
+            inTreeNode(root.right);
+        }
+
+
+    }
+    //后序遍历 递归实现
+    public void nextTreeNode(TreeNode root){
+        if(root == null){
+            return;
+        }
+
+        if(root.left != null){
+            nextTreeNode(root.left);
+        }
+        if(root.right != null){
+            nextTreeNode(root.right);
+        }
+        System.out.println(root.value);
+
+
+    }
+
     public static void main(String[] args) {
         TreeNode node5 = new TreeNode(5, null, null);
         TreeNode node4 = new TreeNode(4, null, null);
@@ -157,7 +205,7 @@ public class BinaryTreePreorderTraversal {
 //        TreeNode node2 = new TreeNode(2,null,null);
 //        TreeNode node1 = new TreeNode(1,node2,node3);
 
-        new BinaryTreePreorderTraversal().BinaryTreeNextorderTraversal(node1);
+        new BinaryTreePreorderTraversal().nextTreeNode(node1);
 
     }
 }
