@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * Created by ydm on 2017/6/14.
@@ -38,6 +36,23 @@ public class BinaryTreePreorderTraversal {
         }
 
     }
+    //前序遍历
+    public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        TreeNode p = root;
+        while(!stack.isEmpty() || p != null) {
+            if(p != null) {
+                stack.push(p);
+                result.add(p.value);  // Add before going to children
+                p = p.left;
+            } else {
+                TreeNode node = stack.pop();
+                p = node.right;
+            }
+        }
+        return result;
+    }
 
     //中序遍历
     public void BinaryTreeLeftorderTraversal(TreeNode node) {
@@ -65,7 +80,40 @@ public class BinaryTreePreorderTraversal {
         }
 
     }
-
+    //中序遍历
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        TreeNode p = root;
+        while(!stack.isEmpty() || p != null) {
+            if(p != null) {
+                stack.push(p);
+                p = p.left;
+            } else {
+                TreeNode node = stack.pop();
+                result.add(node.value);  // Add after all left children
+                p = node.right;
+            }
+        }
+        return result;
+    }
+    //后遍历 145
+    public List<Integer> postorderTraversal(TreeNode root) {
+        LinkedList<Integer> result = new LinkedList<>();
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        TreeNode p = root;
+        while(!stack.isEmpty() || p != null) {
+            if(p != null) {
+                stack.push(p);
+                result.addFirst(p.value);  // Reverse the process of preorder
+                p = p.right;             // Reverse the process of preorder
+            } else {
+                TreeNode node = stack.pop();
+                p = node.left;           // Reverse the process of preorder
+            }
+        }
+        return result;
+    }
     //后遍历 145
     public List<Integer> BinaryTreeNextorderTraversal(TreeNode node) {
 
